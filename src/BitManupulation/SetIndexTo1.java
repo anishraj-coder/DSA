@@ -40,19 +40,24 @@ Sample Output 0
 28*/
 
 /**
- * This class defines a method `setIndexTo1` that sets the kth bit (from the right)
+ * This class defines a method `setIndexTo1` that sets the kth bit
+ *  (from the right)
  * to 1 in the binary representation of a given number n.
  */
 public class SetIndexTo1 {
 
     public static int setIndexTo1(int n, int k) {
-        // Explanation:
-        // 1. Left shift 1 by k positions to get a number with a 1 at the kth bit from the right.
-        //    - Example: k = 3, so 1 << 3 gives us 00100 (binary representation).
+        /* Explanation:
+        // 1. Left shift 1 by k positions to get a number with a 1 at 
+    	//the kth bit from the right.
+        //    - Example: k = 3, so 1 << 3 gives us 00100
+    	//(binary representation).
         // 2. Perform bitwise OR (|) between n and the shifted 1.
-        //    - OR operation sets bits to 1 if either operand has a 1 at that position.
-        //    - In this case, ORing n with the shifted 1 ensures the kth bit is set to 1
-        //      while preserving other bits in n.
+        //    - OR operation sets bits to 1 if either operand 
+    	// has a 1 at that position.
+        //    - In this case, ORing n with the shifted 1 ensures
+    	// the kth bit is set to 1
+        //      while preserving other bits in n.*/
         return n | (1 << k);
     }
 
