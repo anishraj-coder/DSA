@@ -1,40 +1,28 @@
 package greedy;
 
 
-import java.util.ArrayList;
+
+import java.util.Arrays;
 
 public class MinimumPlatforms {
 
     public int findPlatform(int[] s, int[] f) {
-        int n=s.length;
-        if(n==1)return 1;
-        ArrayList<Pair>list=new ArrayList<>();
-        
-        for(int i=0;i<n;i++)list.add(new Pair(s[i],f[i]));
-        
-        list.sort((a,b)->a.e-b.e);
-        int count=1,e=list.get(0).e;
-        
-        for(int i=1;i<n;i++) {
-        	Pair p=list.get(i);
-        	if(p.s<=e) {
-        		count++;
-        		e=Math.max(e, p.e);
-        	}else {
-        		e=p.e;
-        	}
-        	
-        }
-        
-        return count;
-    }
-    
-    private static class Pair{
-    	int s,e;
-    	Pair(int s,int e){
-    		this.s=s;
-    		this.e=e;
+    	int n=s.length;
+    	if(n<=1)return n;
+    	Arrays.sort(s);
+    	Arrays.sort(f);
+    	int i=0,j=0,count=0,max=0;
+    	while(i<n&&j<n) {
+    		if(s[i]<=f[j]) {
+    			count++;
+    			i++;
+    		}else {
+    			count--;
+    			j++;
+    		}
+    		max=Math.max(count,max);
     	}
+        return max;
     }
 
     public static void main(String[] args) {
