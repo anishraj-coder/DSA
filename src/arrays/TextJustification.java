@@ -7,46 +7,48 @@ import java.util.List;
 public class TextJustification {
 
     public List<String> fullJustify(String[] words, int width) {
+    	
     	int n=words.length,i=0;
     	List<String>ans=new ArrayList<>();
     	while(i<n) {
     		int j=i,wordlen=0;
-    		while(j<n&& wordlen +words[j].length() +(j-i)<=width) {
+    		while(j<n&&wordlen+words[j].length()+(j-i)<=width) {
     			wordlen+=words[j].length();
     			j++;
     		}
     		
-    		StringBuilder sb=new StringBuilder();
-    		
     		int numWords=j-i;
     		int numGaps=numWords-1;
-    		if(j==n||numWords==1) {
+    		StringBuilder sb=new StringBuilder(); 
+    		if(numWords==1||j==n) {
     			for(int k=i;k<j;k++) {
     				sb.append(words[k]);
-    				if(k<j-1)sb.append(" ");
+    				if(k<j-1)sb.append(' ');
     			}
+    			
     			while(sb.length()<width)sb.append(" ");
     		}else {
-    			int totalGaps=width-wordlen;
-    			int base=totalGaps/numGaps;
-    			int extra=totalGaps%numGaps;
+    			int total=width-wordlen;
+    			int base=total/numGaps;
+    			int extra=total%numGaps;
     			int extraUsed=0;
     			for(int k=i;k<j;k++) {
     				sb.append(words[k]);
     				if(k<j-1) {
     					int space=base;
-        				if(extraUsed<extra) {
-        					extraUsed++;
-        					space++;
-        				}
-        				for(int s=0;s<space;s++)sb.append(" ");
+    					if(extraUsed<extra) {
+    						space++;
+    						extraUsed++;
+    					}
+    					for(int m=0;m<space;m++)sb.append(" ");
     				}
     			}
     		}
-    		i=j;
     		ans.add(sb.toString());
+    		i=j;
     	}
-        return ans;
+    	
+    	return ans;
     }
 
     public static void main(String[] args) {
